@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+spec:
+  template:
+    metadata:
+        annotations:
+            sidecar.istio.io/inject: "false"
+    spec:
+            containers:
+                    - name: training-container
+                      image: docker.io/mshaikh/pytorch_cu116:v1.12
+                      command:
+                              - "python3"
+                              - "/workdir/kube-poc-examples/katib-workflow/simple_mnist/mnist_vanilla.py"
+                              - "--batch-size=64"
+                              - "--no-cuda"
+                              - "--epochs=1"
+                              - "--lr=${trialParameters.learningRate}"
+                              - "--momentum=${trialParameters.momentum}"
+                      volumeMounts:
+                              - mountPath: "/workdir"
+                                name: source-code
+                      resources:
+                              requests:
+                                 memory: 2Gi
+                                 cpu: 2
+            restartPolicy: Never
+            volumes:
+                    - name: source-code
+                      persistentVolumeClaim:
+                              claimName: kf-pipelines-01
+
