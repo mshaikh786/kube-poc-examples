@@ -178,8 +178,11 @@ def main():
     
         val_acc = accuracy(outputs,labels)
         val_loss = val_loss / len(valloader.dataset)
-        print(f'[{epoch + 1}] : Validation accuracy:{val_acc:.3f} | Validation loss:{val_loss:.3f}')
-        #print(f'[{epoch + 1}] : Train loss:{train_loss:.3f} | Validation loss:{val_loss:.3f}')
+        print('epoch:',epoch)
+        print('Validation-accurracy=',val_acc)
+        print('Validation-loss=',val_loss)
+        print('\n')
+        
     
 
 
