@@ -179,9 +179,7 @@ def main():
         val_acc = accuracy(outputs,labels).item()
         val_loss = val_loss / len(valloader.dataset)
         print('epoch:',epoch)
-        print('accurracy=',val_acc)
-        print('loss=',val_loss)
-        print('\n')
+        print('Validation-accuracy=%.3f | Validation-loss=%.3f'%(val_acc,val_loss))
         
     
 
