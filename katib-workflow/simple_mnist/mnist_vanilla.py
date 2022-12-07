@@ -176,11 +176,11 @@ def main():
             loss = criterion(outputs, labels)
             val_loss += loss.item() #* data[0].size(0)
     
-        val_acc = accuracy(outputs,labels)
+        val_acc = accuracy(outputs,labels).item()
         val_loss = val_loss / len(valloader.dataset)
         print('epoch:',epoch)
-        print('Validation-accurracy=',val_acc)
-        print('Validation-loss=',val_loss)
+        print('accurracy=',val_acc)
+        print('loss=',val_loss)
         print('\n')
         
     
