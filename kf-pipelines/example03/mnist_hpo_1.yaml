@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+spec:
+  template:
+    spec:
+      containers:
+        - name: training-container
+          image: docker.io/bitnami/pytorch:1.13.0
+          command:
+            - "python3"
+            - "/opt/mxnet-mnist/mnist.py"
+            - "--batch-size=64"
+            - "--lr=${trialParameters.learningRate}"
+          volumeMounts:
+            - mountPath: /opt
+              name: kf-pipelines-01
+      restartPolicy: Never
+      volumes:
+            - name: kf-pipelines-01
+              persistentVolumeClaim:
+                claimName: kf-pipelines-01
