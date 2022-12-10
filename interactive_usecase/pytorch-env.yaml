@@ -1,0 +1,22 @@
+name: pytorch-env
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cudatoolkit=11.3
+  - python=3.9
+  - matplotlib
+  - numpy
+  - pip
+  - pip:
+       - torch-summary
+  - pytorch=1.10.1
+  - pytorch-lightning
+  - tensorboard
+  - torchaudio
+  - torchvision
+  - ipykernel
+  - nb_conda_kernels
