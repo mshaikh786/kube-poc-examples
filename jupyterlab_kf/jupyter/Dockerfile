@@ -9,7 +9,8 @@ ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
 ARG MINIFORGE_VERSION=4.10.1-4
 ARG PIP_VERSION=21.1.2
-ARG PYTHON_VERSION=3.8.10
+#ARG PYTHON_VERSION=3.8.10
+ARG PYTHON_VERSION=3.9.10
 
 # install -- node.js
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -29,8 +30,8 @@ RUN mkdir -p ${CONDA_DIR} \
  && echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/profile \
  && echo "conda activate base" >> ${HOME}/.bashrc \
  && echo "conda activate base" >> /etc/profile \
- && chown -R ${NB_USER}:${NB_GID} ${CONDA_DIR} \
- && chown -R ${NB_USER}:${NB_GID} ${HOME}
+ && chown -R ${NB_USER}:${NB_GROUP} ${CONDA_DIR} \
+ && chown -R ${NB_USER}:${NB_GROUP} ${HOME}
 
 # switch to NB_UID for installs
 USER ${NB_UID}
@@ -52,12 +53,14 @@ RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIF
     pip=${PIP_VERSION} \
  && conda update -y -q --all \
  && conda clean -a -f -y \
- && chown -R ${NB_USER}:${NB_GID} ${CONDA_DIR} \
- && chown -R ${NB_USER}:${NB_GID} ${HOME}
+ && chown -R ${NB_USER}:${NB_GROUP} ${CONDA_DIR} \
+ && chown -R ${NB_USER}:${NB_GROUP} ${HOME}
 
 # install - requirements.txt
 COPY --chown=${NB_USER}:${NB_GID} requirements.txt /tmp
-RUN python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
+RUN conda install -y -c conda-forge mamba \ 
+ && mamba install -y -c conda-forge jupyterlab notebook ipykernel nb_conda_kernels nodejs\
+ && python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
  && rm -f /tmp/requirements.txt \
  && jupyter lab --generate-config \
  && rm -rf ${HOME}/.cache/yarn \
