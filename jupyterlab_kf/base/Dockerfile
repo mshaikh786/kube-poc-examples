@@ -1,10 +1,12 @@
 # Use the respective Makefile to build the image.
-FROM ubuntu:20.04
-
+FROM nvidia/cuda:11.5.1-base-ubuntu20.04
+ARG NB_USER=training01
+ARG NB_UID=882003
+ARG NB_GID=${NB_UID}
 # common environemnt variables
-ENV NB_USER training01
-ENV NB_UID 882003
-ENV NB_GID 882003
+ENV NB_USER ${NB_USER}
+ENV NB_UID ${NB_UID}
+ENV NB_GID ${NB_GID}
 ENV NB_GROUP ${NB_USER}
 ENV NB_PREFIX /
 ENV HOME /home/$NB_USER
@@ -77,4 +79,5 @@ ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 USER $NB_UID
+
 
