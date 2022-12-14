@@ -10,5 +10,7 @@ $ cd jupyterlab_kf/jupyter
 $ NB_USER=training## NB_UID=880### make docker-build
 
 Push the resulting image namely, jupyter:training## to hub.docker.com
+$ NB_USER=training## DOCKERHUB_USER=<hub.docker username>  make docker-push
+  (make sure you have run $ docker login )
 
 This can then be pulled in Kubeflow's UI when starting an interactive session.
