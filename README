@@ -1,0 +1,14 @@
+Kubeflow first pass. Notebook, pipeline examples and Katib example are included
+
+Pre-requisites:
+  Need to have a Docker machine to build an image
+  Credentials (sent separately in a private email)
+
+First create a JupyterLab enabled container image for Kubeflow. 
+
+$ cd jupyterlab_kf/jupyter
+$ NB_USER=training## NB_UID=880### make docker-build
+
+Push the resulting image namely, jupyter:training## to hub.docker.com
+
+This can then be pulled in Kubeflow's UI when starting an interactive session.
