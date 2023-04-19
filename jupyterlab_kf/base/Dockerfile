@@ -43,6 +43,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     vim \
     wget \
     zip \
+    libgl1-mesa-glx \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
