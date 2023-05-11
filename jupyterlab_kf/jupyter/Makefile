@@ -10,4 +10,8 @@ docker-build: docker-build-base
 	docker build -t jupyter:${TAG} --build-arg BASE_IMG=base:${TAG} -f Dockerfile .
 
 docker-push:
+	docker run -d --name jupyter-kf jupyter:${TAG}
+	docker commit -m "Jupyter image for Kubeflow with UID and GID" jupyter-kf ${DOCKERHUB_USER}/jupyter:${TAG}
 	docker push ${DOCKERHUB_USER}/jupyter:${TAG}
+	docker stop jupyter-kf
+	docker rm jupyter-kf
