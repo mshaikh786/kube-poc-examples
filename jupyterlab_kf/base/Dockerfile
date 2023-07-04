@@ -66,7 +66,7 @@ RUN curl -sL "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${KUBECTL_A
 
 # create user and set required ownership
 RUN groupadd --gid ${NB_GID} ${NB_GROUP}
-RUN useradd -M -s /bin/bash -u ${NB_UID} -g ${NB_GID} -G ${NB_GROUP} ${NB_USER} \
+RUN useradd --no-log-init -M -s /bin/bash -u ${NB_UID} -g ${NB_GID} -G ${NB_GROUP} ${NB_USER} \
  && mkdir -p ${HOME} \
  && chown -R ${NB_USER}:${NB_GROUP} ${HOME} \
  && chown -R ${NB_USER}:${NB_GROUP} /usr/local/bin \
