@@ -1,0 +1,19 @@
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: reference-data
+  namespace: training01
+spec:
+ selector:
+  matchLabels:
+    reference-data: "true"
+ desc: "Mount point with reference dataset and ready-to-run examples"
+ volumeMounts:
+ - name: reference-volume
+   mountPath: /reference
+   readOnly: false
+ volumes:
+ - name: reference-volume
+   hostPath:
+           path: /reference
+           type: Directory

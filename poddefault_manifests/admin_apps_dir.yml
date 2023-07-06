@@ -1,0 +1,19 @@
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: application-catalouge
+  namespace: training01
+spec:
+ selector:
+  matchLabels:
+    application-catalouge: "true"
+ desc: "Mount point with pre-installed applications"
+ volumeMounts:
+ - name: apps-volume
+   mountPath: /apps
+   readOnly: false
+ volumes:
+ - name: apps-volume
+   hostPath:
+           path: /apps
+           type: Directory
