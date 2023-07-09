@@ -1,19 +1,19 @@
 apiVersion: kubeflow.org/v1alpha1
 kind: PodDefault
 metadata:
-  name: my-workspace
+  name: my-environments
   namespace: training01
 spec:
  selector:
   matchLabels:
-    my-workspace: "true"
- desc: "User workspace"
+    my-environments: "true"
+ desc: "User environments"
  volumeMounts:
- - name: workspace-volume
-   mountPath: /workspace
+ - name: sw-volume
+   mountPath: /sw
    readOnly: false
  volumes:
- - name: workspace-volume
+ - name: sw-volume
    hostPath:
-           path: /mnt/workspace/training01
+           path: /mnt/sw
            type: Directory

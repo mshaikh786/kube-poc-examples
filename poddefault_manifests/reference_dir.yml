@@ -7,13 +7,13 @@ spec:
  selector:
   matchLabels:
     reference-data: "true"
- desc: "Mount point with reference dataset and ready-to-run examples"
+ desc: "Reference datasets and examples"
  volumeMounts:
  - name: reference-volume
    mountPath: /reference
-   readOnly: false
+   readOnly: true
  volumes:
  - name: reference-volume
    hostPath:
-           path: /reference
+           path: /mnt/reference
            type: Directory

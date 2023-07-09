@@ -7,7 +7,7 @@ spec:
  selector:
   matchLabels:
     application-catalouge: "true"
- desc: "Mount point with pre-installed applications"
+ desc: "Pre-installed Applications Catalouge"
  volumeMounts:
  - name: apps-volume
    mountPath: /apps
@@ -15,5 +15,5 @@ spec:
  volumes:
  - name: apps-volume
    hostPath:
-           path: /apps
+           path: /mnt/apps
            type: Directory
