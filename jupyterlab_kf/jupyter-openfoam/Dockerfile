@@ -11,7 +11,7 @@ ARG MINIFORGE_VERSION=4.10.1-4
 ARG PIP_VERSION=21.1.2
 #ARG PYTHON_VERSION=3.8.10
 ARG PYTHON_VERSION=3.9.10
-ARG OF_VERSION=2212
+ARG OF_VERSION=2012
 
 # Jupyter Lab installation
 
@@ -21,8 +21,9 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list \
  && apt-get -yq update \
  && add-apt-repository ppa:rock-core/qt4 \
+ && apt-get install -y 
  && apt-get -yq install --no-install-recommends \
-    nodejs build-essential flex bison cmake zlib1g-dev \
+    nodejs build-essential libfl-dev libbison-dev cmake zlib1g-dev \
     libboost-system-dev libboost-thread-dev \
     gnuplot libreadline-dev libncurses-dev libxt-dev \
     qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev \
@@ -91,16 +92,16 @@ USER ${NB_UID}
 
 # OpenFOAM-Installation
 
-WORKDIR /app
-ENV OF_HOME="/app/OpenFOAM-v${OF_VERSION}"
+WORKDIR /software
+ENV OF_HOME="/software/OpenFOAM-v${OF_VERSION}"
 ENV OF_BASHRC="${OF_HOME}/etc/bashrc"
 
 RUN wget https://sourceforge.net/projects/openfoam/files/v${OF_VERSION}/OpenFOAM-v${OF_VERSION}.tgz && \
     wget https://sourceforge.net/projects/openfoam/files/v${OF_VERSION}/ThirdParty-v${OF_VERSION}.tgz && \
     tar xvf OpenFOAM-v${OF_VERSION}.tgz && tar xvf ThirdParty-v${OF_VERSION}.tgz
 
-RUN echo 'export FOAM_INST_DIR="/app/OpenFOAM-v${OF_VERSION}" \nexport WM_LABEL_SIZE=64 \n' >> $OF_HOME/etc/prefs.sh 
+RUN echo -e 'export FOAM_INST_DIR="/software/OpenFOAM-v2012" \nexport WM_LABEL_SIZE=64 \nWM_MPLIB=OPENMPI \n' >> $OF_HOME/etc/prefs.sh 
 WORKDIR $OF_HOME
 SHELL ["/bin/bash", "-c"]
-RUN source /app/OpenFOAM-v${OF_VERSION}/etc/bashrc && wmake -j 1 all
+RUN source /software/OpenFOAM-v2012/etc/bashrc && ./Allwmake -l -all -j6
 

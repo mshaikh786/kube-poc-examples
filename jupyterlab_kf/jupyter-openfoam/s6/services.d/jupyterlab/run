@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 cd "${HOME}"
-source /app/OpenFOAM-v2212/etc/bashrc
+source /software/OpenFOAM-v2012/etc/bashrc
 exec /opt/conda/bin/jupyter lab \
   --notebook-dir="${HOME}" \
   --ip=0.0.0.0 \
