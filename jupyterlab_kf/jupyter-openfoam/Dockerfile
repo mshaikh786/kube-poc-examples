@@ -19,21 +19,24 @@ ARG OF_VERSION=2012
 RUN export DEBIAN_FRONTEND=noninteractive \
  && curl -sL "https://deb.nodesource.com/gpgkey/nodesource.gpg.key" | apt-key add - \
  && echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list \
- && apt-get -yq update \
  && add-apt-repository ppa:rock-core/qt4 \
- && apt-get install -y 
+ && apt-get install -y \
  && apt-get -yq install --no-install-recommends \
     nodejs build-essential libfl-dev libbison-dev cmake zlib1g-dev \
-    libboost-system-dev libboost-thread-dev \
     gnuplot libreadline-dev libncurses-dev libxt-dev \
+    gcc-10 g++-10 gfortran-10 curl make libnuma-dev libnl-3-200 autoconf \
     qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 7 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 7 && \
+    update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-10 7
 
 
 # setup environment for conda
 ENV CONDA_DIR /opt/conda
-ENV PATH "${CONDA_DIR}/bin:${PATH}"
+ENV PATH "${CONDA_DIR}/bin:/usr/local/bin:${PATH}"
+ENV LD_LIBRARY_PATH "/usr/local/lib:/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}"
 RUN mkdir -p ${CONDA_DIR} \
  && echo ". /opt/conda/etc/profile.d/conda.sh" >> ${HOME}/.bashrc \
  && echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/profile \
@@ -85,6 +88,11 @@ USER root
 RUN mkdir -p /tmp_home \
  && cp -r ${HOME} /tmp_home \
  && chown -R ${NB_USER}:${NB_GROUP} /tmp_home
+
+# This shall move up on top with all other system packages.
+RUN apt-get update && apt-get install -y openssh-server
+
+
 USER ${NB_UID}
 
 
@@ -92,16 +100,10 @@ USER ${NB_UID}
 
 # OpenFOAM-Installation
 
-WORKDIR /software
-ENV OF_HOME="/software/OpenFOAM-v${OF_VERSION}"
+ENV OF_HOME="/apps/CFD/OpenFOAM-v${OF_VERSION}"
 ENV OF_BASHRC="${OF_HOME}/etc/bashrc"
 
-RUN wget https://sourceforge.net/projects/openfoam/files/v${OF_VERSION}/OpenFOAM-v${OF_VERSION}.tgz && \
-    wget https://sourceforge.net/projects/openfoam/files/v${OF_VERSION}/ThirdParty-v${OF_VERSION}.tgz && \
-    tar xvf OpenFOAM-v${OF_VERSION}.tgz && tar xvf ThirdParty-v${OF_VERSION}.tgz
 
-RUN echo -e 'export FOAM_INST_DIR="/software/OpenFOAM-v2012" \nexport WM_LABEL_SIZE=64 \nWM_MPLIB=OPENMPI \n' >> $OF_HOME/etc/prefs.sh 
-WORKDIR $OF_HOME
-SHELL ["/bin/bash", "-c"]
-RUN source /software/OpenFOAM-v2012/etc/bashrc && ./Allwmake -l -all -j6
+EXPOSE 8888
 
+ENTRYPOINT ["/init"]

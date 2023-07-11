@@ -1,6 +1,12 @@
 #!/usr/bin/with-contenv bash
 cd "${HOME}"
-source /software/OpenFOAM-v2012/etc/bashrc
+source /apps/CFD/OpenFOAM-v2012/etc/bashrc
+export FOAM_USER_APPBIN=/sw/${WM_PROJECT}-${WM_PROJECT_VERSION}/platforms/linux64GccDPInt32Opt/bin
+export FOAM_USER_LIBBIN=/sw/${WM_PROJECT}-${WM_PROJECT_VERSION}/platforms/linux64GccDPInt32Opt/lib
+export PATH=${FOAM_APPBIN}:${FOAM_USER_APPBIN}:${PATH}
+export LD_LIBRARY_PATH=${FOAM_LIBBIN}:${FOAM_USER_LIBBIN}:${LD_LIBRARY_PATH}
+
+
 exec /opt/conda/bin/jupyter lab \
   --notebook-dir="${HOME}" \
   --ip=0.0.0.0 \
