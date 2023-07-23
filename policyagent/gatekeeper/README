@@ -1,0 +1,15 @@
+Installing Gatekeeper:
+
+kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/v3.5.1/deploy/experimental/gatekeeper-mutation.yaml
+
+kubectl get pods -n gatekeeper-system
+
+
+Installing policy:
+kubectl create -f mutate_user.yaml
+kubectl create -f mutate_group.yaml
+kubectl create -f mutate_fsgroup.yaml
+
+Installing target workload to mutate:
+kubectl create -f test.yaml
+kubecrt exec test -c test -ti -- sh 

@@ -1,0 +1,20 @@
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: set-group
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    scope: Namespaced
+    kinds:
+    - apiGroups: ["*"]
+      kinds: ["Pod"]
+    excludedNamespaces: ["system"]
+  location: "spec.containers[name:*].securityContext.runAsGroup"
+  parameters:
+    assign:
+      value: 174988
+
