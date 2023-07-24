@@ -12,7 +12,7 @@ spec:
     kinds:
     - apiGroups: ["*"]
       kinds: ["Pod"]
-    excludedNamespaces: ["system"]
+    excludedNamespaces: ["system","auth","cert-manager","default","ingress-nginx","istio-system","knative-eventing","knative-serving","kube-node-lease","kube-public","kube-system", "kubeflow", "kubeflow-user-example-com", "loadbalancer-health", "nfs"]
   location: "spec.containers[name:*].securityContext.runAsUser"
   parameters:
     assign:
