@@ -1,0 +1,73 @@
+FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04 
+ARG PYTHON_VERSION=3.9
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+         build-essential \
+         cmake \
+         git \
+         curl \
+         vim \
+         wget \
+         ca-certificates \
+         openssh-client \
+         libjpeg-dev \
+         libpng-dev &&\
+     rm -rf /var/lib/apt/lists/*
+
+ENV JOB_USER training01
+ENV JOB_UID 800001
+ENV JOB_GID 800001
+ENV JOB_GROUP ${JOB_USER}
+ENV HOME /home/$JOB_USER
+ENV SHELL /bin/bash
+
+RUN groupadd --gid ${JOB_GID} ${JOB_GROUP}
+RUN groupadd --gid 1337 kfgroup
+RUN useradd --no-log-init -M -s /bin/bash -u ${JOB_UID} -g ${JOB_GID} -G ${JOB_GROUP},kfgroup ${JOB_USER} \
+&& mkdir -p ${HOME} \
+&& chown -R ${JOB_USER}:${JOB_GROUP} ${HOME}
+
+RUN  mkdir -p /workspace \
+  && chgrp -R kfgroup /workspace \
+  && chmod -R g+rwx /workspace 
+
+USER ${JOB_USER}
+WORKDIR /workspace/sw 
+RUN wget https://www.open-mpi.org/software/ompi/v4.1/downloads/openmpi-4.1.4.tar.gz && \
+    tar xvf openmpi-4.1.4.tar.gz  && \
+    cd openmpi-4.1.4 && \
+    ./configure --prefix=/workspace/sw --with-cuda && \
+    make all install && \
+    rm -rf openmpi-4.1.4
+
+ENV PATH="$PATH:/workspace/sw/bin"
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/workspace/sw/lib/"
+
+RUN ompi_info --parsable --all | grep mpi_built_with_cuda_support:value
+
+RUN wget -O /workspace/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
+     chmod +x /workspace/miniconda.sh && \
+     /workspace/miniconda.sh -b -p /workspace/sw/miniconda3 && \
+     rm /workspace/miniconda.sh && \
+     /workspace/sw/miniconda3/bin/conda update conda && \
+     /workspace/sw/miniconda3/bin/conda install -y python=$PYTHON_VERSION numpy pyyaml scipy ipython mkl mkl-include cython typing && \
+     /workspace/sw/miniconda3/bin/conda clean -ya
+ENV PATH /workspace/sw/miniconda3/bin:$PATH
+# This must be done before pip so that requirements.txt is available
+WORKDIR /workspace/sw/
+
+RUN git clone -b v1.13.1 --recursive https://github.com/pytorch/pytorch pytorch
+
+RUN TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0+PTX 8.0+PTX" TORCH_NVCC_FLAGS="-Xfatbin -compress-all" \
+    CMAKE_PREFIX_PATH="$(dirname $(which conda))/../" \
+    cd pytorch/ && \
+    pip install -v .
+
+RUN /workspace/sw/miniconda3/bin/conda config --set ssl_verify False
+RUN pip install --upgrade pip --trusted-host pypi.org --trusted-host files.pythonhosted.org
+RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org torchvision tensorboardX==1.6.0 protobuf==3.20.0
+
+WORKDIR /workspace/mnist/src
+ADD mnist.py /workspace/mnist/src/mnist
+
+ENTRYPOINT ["mpirun", "-n", "1", "--allow-run-as-root", "python", "/workspace/mnist/src/mnist.py"]
