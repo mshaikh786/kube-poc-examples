@@ -1,7 +1,8 @@
 apiVersion: "kubeflow.org/v1"
 kind: "PyTorchJob"
 metadata:
-  name: "pytorch-dist-mnist-nccl"
+  name: "dist"
+  namespace: training01
 spec:
   pytorchReplicaSpecs:
     Master:
@@ -14,7 +15,7 @@ spec:
         spec:
           containers:
             - name: pytorch
-              image: gcr.io/<your_project>/pytorch_dist_mnist:latest
+              image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
               args: ["--backend", "nccl"]
               resources: 
                 limits:
@@ -29,7 +30,7 @@ spec:
         spec:
           containers: 
             - name: pytorch
-              image: gcr.io/<your_project>/pytorch_dist_mnist:latest
+              image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
               args: ["--backend", "nccl"]
               resources: 
                 limits:
