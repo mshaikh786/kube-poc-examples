@@ -1,6 +1,5 @@
 # Use the respective Makefile to build the image.
-FROM nvidia/cuda:11.5.1-base-ubuntu20.04
-#FROM ubuntu:20.04
+FROM nvcr.io/nvidia/cuda:11.5.1-base-ubuntu20.04
 ARG NB_USER=training01
 ARG NB_UID=882003
 ARG NB_GID=${NB_UID}
@@ -67,7 +66,8 @@ RUN curl -sL "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${KUBECTL_A
 
 # create user and set required ownership
 RUN groupadd --gid ${NB_GID} ${NB_GROUP}
-RUN useradd --no-log-init -M -s /bin/bash -u ${NB_UID} -g ${NB_GID} -G ${NB_GROUP} ${NB_USER} \
+RUN groupadd --gid 1337 kfgroup
+RUN useradd --no-log-init -M -s /bin/bash -u ${NB_UID} -g ${NB_GID} -G ${NB_GROUP},kfgroup ${NB_USER}  \
  && mkdir -p ${HOME} \
  && chown -R ${NB_USER}:${NB_GROUP} ${HOME} \
  && chown -R ${NB_USER}:${NB_GROUP} /usr/local/bin \

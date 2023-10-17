@@ -5,12 +5,11 @@ FROM $BASE_IMG
 USER root
 
 # args - software versions
-ARG MINIFORGE_ARCH="x86_64"
+ARG MAMBAFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
-ARG MINIFORGE_VERSION=4.10.1-4
+ARG MAMBAFORGE_VERSION=23.3
 ARG PIP_VERSION=21.1.2
-#ARG PYTHON_VERSION=3.8.10
-ARG PYTHON_VERSION=3.9.10
+ARG PYTHON_VERSION=3.9
 
 # install -- node.js
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -24,6 +23,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 # setup environment for conda
 ENV CONDA_DIR /opt/conda
+ENV CONDA_PKGS_DIRS=${HOME}/conda_cache
 ENV PATH "${CONDA_DIR}/bin:${PATH}"
 RUN mkdir -p ${CONDA_DIR} \
  && echo ". /opt/conda/etc/profile.d/conda.sh" >> ${HOME}/.bashrc \
@@ -37,29 +37,33 @@ RUN mkdir -p ${CONDA_DIR} \
 USER ${NB_UID}
 
 # install - conda, pip, python
-RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh" -o /tmp/Miniforge3.sh \
- && curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh.sha256" -o /tmp/Miniforge3.sh.sha256 \
- && echo "$(cat /tmp/Miniforge3.sh.sha256 | awk '{ print $1; }') /tmp/Miniforge3.sh" | sha256sum --check \
- && rm /tmp/Miniforge3.sh.sha256 \
- && /bin/bash /tmp/Miniforge3.sh -b -f -p ${CONDA_DIR} \
- && rm /tmp/Miniforge3.sh \
+# RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh" -o /tmp/Miniforge3.sh \
+#  && curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh.sha256" -o /tmp/Miniforge3.sh.sha256 \
+#  && echo "$(cat /tmp/Miniforge3.sh.sha256 | awk '{ print $1; }') /tmp/Miniforge3.sh" | sha256sum --check \
+#  && rm /tmp/Miniforge3.sh.sha256 \
+#  && /bin/bash /tmp/Miniforge3.sh -b -f -p ${CONDA_DIR} \
+#  && rm /tmp/Miniforge3.sh \
+RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/23.3.1-0/Mambaforge-23.3.1-0-Linux-x86_64.sh" -o /tmp/Mambaforge.sh \
+&&  /bin/bash /tmp/Mambaforge.sh  -b -f -p ${CONDA_DIR} \
+ && rm /tmp/Mambaforge.sh  \
  && conda config --system --set auto_update_conda false \
  && conda config --system --set show_channel_urls true \
- && echo "conda ${MINIFORGE_VERSION:0:-2}" >> ${CONDA_DIR}/conda-meta/pinned \
- && echo "python ${PYTHON_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
- && conda install -y -q \
+#  && echo "conda ${MAMBAFORGE_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
+#  && echo "conda ${MAMBAFORGE_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
+#  && echo "python ${PYTHON_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
+ && mamba install -y -q \
     python=${PYTHON_VERSION} \
-    conda=${MINIFORGE_VERSION:0:-2} \
     pip=${PIP_VERSION} \
- && conda update -y -q --all \
- && conda clean -a -f -y \
+#    conda=${MINIFORGE_VERSION} \
+ && mamba update -y -q --all \
+ && mamba clean -a -f -y \
  && chown -R ${NB_USER}:${NB_GROUP} ${CONDA_DIR} \
  && chown -R ${NB_USER}:${NB_GROUP} ${HOME}
 
 # install - requirements.txt
 COPY --chown=${NB_USER}:${NB_GID} requirements.txt /tmp
-RUN conda install -y -c conda-forge mamba \ 
- && mamba install -y -c conda-forge jupyterlab notebook ipykernel nb_conda_kernels nodejs\
+#RUN conda install -y -c conda-forge -v mamba \ 
+RUN mamba install -y -c conda-forge -v jupyterlab=3.6 notebook=6.5 ipykernel=6.25 nb_conda_kernels nodejs\
  && python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
  && rm -f /tmp/requirements.txt \
  && jupyter lab --generate-config \
