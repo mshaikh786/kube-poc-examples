@@ -3,6 +3,7 @@ ARG BASE_IMG=<jupyter>
 FROM $BASE_IMG
 
 # install - requirements.txt
-COPY --chown=jovyan:users cpu-requirements.txt /tmp/requirements.txt
+COPY --chown=${NB_USER}:${NB_GROUP} cpu-requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
  && rm -f /tmp/requirements.txt
+RUN mamba clean -a -f -y 

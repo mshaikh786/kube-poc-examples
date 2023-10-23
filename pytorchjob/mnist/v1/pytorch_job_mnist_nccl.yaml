@@ -13,13 +13,30 @@ spec:
           annotations:
             sidecar.istio.io/inject: "false"
         spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: gpu-node
+                    operator: In
+                    values:
+                    - "1"
           containers:
             - name: pytorch
               image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
-              args: ["--backend", "nccl"]
+              imagePullPolicy: Always
+              command: [ "python", 
+                          #"-m", "torch.distributed.launch", "--use_env", 
+                          "/workspace/mnist/src/mnist.py","--epochs=4", "--batch-size=32","--backend", "nccl"]
+              env:
+                - name: 'NCCL_DEBUG'
+                  value: 'INFO'
+                  
               resources: 
                 limits:
                   nvidia.com/gpu: 1
+
     Worker:
       replicas: 1
       restartPolicy: OnFailure
@@ -28,10 +45,26 @@ spec:
           annotations:
             sidecar.istio.io/inject: "false"
         spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: gpu-node
+                    operator: In
+                    values:
+                    - 1
           containers: 
             - name: pytorch
               image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
-              args: ["--backend", "nccl"]
+              imagePullPolicy: Always
+              command: [ "python", 
+                         #"-m", "torch.distributed.launch", "--use_env", 
+                          "/workspace/mnist/src/mnist.py","--epochs=4", "--batch-size=32","--backend", "nccl"]
+              env:
+                - name: 'NCCL_DEBUG'
+                  value: 'INFO'
               resources: 
                 limits:
                   nvidia.com/gpu: 1
+                          

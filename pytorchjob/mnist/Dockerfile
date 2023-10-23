@@ -25,8 +25,8 @@ USER ${JOB_USER}
 
 RUN pip install tensorboardX==1.6.0 protobuf==3.20.0
 
-ADD mnist.py /workspace/mnist/src/mnist.py
+ADD mnist_v2.py /workspace/mnist/src/mnist.py
 
 
-ENTRYPOINT ["python","/workspace/mnist/src/mnist.py"]
+#ENTRYPOINT ["python","/workspace/mnist/src/mnist.py"]
 

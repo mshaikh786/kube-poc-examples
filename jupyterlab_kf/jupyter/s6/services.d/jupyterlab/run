@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bash
 cd "${HOME}"
+mkdir -p ${HOME}/conda_cache
 exec /opt/conda/bin/jupyter lab \
   --notebook-dir="${HOME}" \
   --ip=0.0.0.0 \
@@ -10,4 +11,6 @@ exec /opt/conda/bin/jupyter lab \
   --ServerApp.password="" \
   --ServerApp.allow_origin="*" \
   --ServerApp.base_url="${NB_PREFIX}" \
-  --ServerApp.authenticate_prometheus=False
+  --ServerApp.authenticate_prometheus=False \
+  --ServerApp.max_body_size=5368709120 \
+  --ServerApp.max_buffer_size=5368709120
