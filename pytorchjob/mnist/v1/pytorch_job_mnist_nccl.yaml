@@ -2,41 +2,9 @@ apiVersion: "kubeflow.org/v1"
 kind: "PyTorchJob"
 metadata:
   name: "dist"
-  namespace: training01
+  namespace: default
 spec:
   pytorchReplicaSpecs:
-    Master:
-      replicas: 1
-      restartPolicy: OnFailure
-      template:
-        metadata:
-          annotations:
-            sidecar.istio.io/inject: "false"
-        spec:
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: gpu-node
-                    operator: In
-                    values:
-                    - "1"
-          containers:
-            - name: pytorch
-              image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
-              imagePullPolicy: Always
-              command: [ "python", 
-                          #"-m", "torch.distributed.launch", "--use_env", 
-                          "/workspace/mnist/src/mnist.py","--epochs=4", "--batch-size=32","--backend", "nccl"]
-              env:
-                - name: 'NCCL_DEBUG'
-                  value: 'INFO'
-                  
-              resources: 
-                limits:
-                  nvidia.com/gpu: 1
-
     Worker:
       replicas: 1
       restartPolicy: OnFailure
@@ -45,26 +13,27 @@ spec:
           annotations:
             sidecar.istio.io/inject: "false"
         spec:
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: gpu-node
-                    operator: In
-                    values:
-                    - 1
           containers: 
             - name: pytorch
               image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
               imagePullPolicy: Always
-              command: [ "python", 
-                         #"-m", "torch.distributed.launch", "--use_env", 
-                          "/workspace/mnist/src/mnist.py","--epochs=4", "--batch-size=32","--backend", "nccl"]
+              command: [ "torchrun",
+                         "--nnodes", "1",
+                         "--nproc_per_node","4",
+                         "/workspace/mnist/src/ddp.py",
+                         "--batch-size","32",
+                         "--num-worker","8",]
               env:
                 - name: 'NCCL_DEBUG'
                   value: 'INFO'
+                - name: 'DATA_DIR'
+                  value: '/data/tiny-imagenet-200'
+                - name: 'NCCL_DEBUG_SUBSYS'
+                  value: 'ALL'
+                - name: 'OMP_NUM_THREADS'
+                  value: '1'
               resources: 
                 limits:
-                  nvidia.com/gpu: 1
-                          
+                  cpu: 8
+                  memory: '50Gi'
+                  nvidia.com/gpu: 4

@@ -1,5 +1,6 @@
-FROM pytorch/pytorch:1.12.1-cuda11.3-cudnn8-runtime
-
+FROM nvcr.io/nvidia/pytorch:21.12-py3
+#pytorch/pytorch:1.12.1-cuda11.3-cudnn8-runtime
+RUN apt-get update && apt-get install -y curl unzip
 
 
 ENV JOB_USER training01
@@ -23,10 +24,26 @@ RUN  mkdir -p /workspace/mnist/src \
 
 USER ${JOB_USER}
 
-RUN pip install tensorboardX==1.6.0 protobuf==3.20.0
+WORKDIR /data
+RUN curl -sL "http://cs231n.stanford.edu/tiny-imagenet-200.zip" -o /tmp/tiny-imagenet-200.zip \ 
+&& unzip /tmp/tiny-imagenet-200.zip \
+&& rm -r /tmp/tiny-imagenet-200.zip
+ENV DATA_DIR=/data/tiny-imagenet-200
 
-ADD mnist_v2.py /workspace/mnist/src/mnist.py
+RUN pip install tensorboardX==1.6.0 protobuf==3.20.0 matplotlib
+
+ADD mnist_v2.py /workspace/mnist/src/mnist_v2.py
+ADD mnist.py /workspace/mnist/src/mnist.py
+ADD ddp.py /workspace/mnist/src/ddp.py
+ADD device_info.py /workspace/mnist/src/device_info.py
+
+WORKDIR /workspace
 
 
-#ENTRYPOINT ["python","/workspace/mnist/src/mnist.py"]
+FROM nvcr.io/nvidia/cuda:11.6.0-base-ubuntu20.04
+COPY --from=0 /workspace /workspace
+COPY --from=0 /opt /opt
+WORKDIR /workspace 
+ENV PATH=/workspace/bin:${PATH}
+#ENTRYPOINT ["python","/workspace/mnist/src/mnist_v2.py"]
 

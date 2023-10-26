@@ -115,6 +115,8 @@ def main():
     torch.manual_seed(args.seed)
 
     device = torch.device("cuda" if use_cuda else "cpu")
+    gpu_id = int(os.environ['LOCAL_RANK'])
+    torch.cuda.set_device(gpu_id) 
 
     if should_distribute():
         print('Using distributed PyTorch with {} backend'.format(args.backend))
