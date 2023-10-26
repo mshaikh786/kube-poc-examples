@@ -23,7 +23,9 @@ spec:
                          "--node_rank","0",
                          "/workspace/mnist/src/ddp.py",
                          "--batch-size","32",
-                         "--num-worker","1",]
+                         "--num-worker","8",
+                         "--epochs","4",
+                         "--lr","0.001" ]
               env:
                 - name: 'NCCL_DEBUG'
                   value: 'INFO'
