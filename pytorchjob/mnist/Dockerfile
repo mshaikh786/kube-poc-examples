@@ -29,7 +29,9 @@ RUN curl -sL "http://cs231n.stanford.edu/tiny-imagenet-200.zip" -o /tmp/tiny-ima
 && rm -r /tmp/tiny-imagenet-200.zip
 ENV DATA_DIR=/data/tiny-imagenet-200
 
-RUN pip install tensorboardX==1.6.0 protobuf==3.20.0 matplotlib
+#RUN pip install tensorboardX==1.6.0 protobuf==3.20.0 matplotlib
+RUN pip install tensorboardX matplotlib
+
 
 ADD mnist_v2.py /workspace/mnist/src/mnist_v2.py
 ADD mnist.py /workspace/mnist/src/mnist.py
