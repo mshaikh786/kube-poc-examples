@@ -1,5 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:21.12-py3
-#pytorch/pytorch:1.12.1-cuda11.3-cudnn8-runtime
+FROM pytorch/pytorch:1.12.1-cuda11.3-cudnn8-runtime
 RUN apt-get update && apt-get install -y curl unzip
 
 
@@ -40,10 +39,4 @@ ADD device_info.py /workspace/mnist/src/device_info.py
 WORKDIR /workspace
 
 
-FROM nvcr.io/nvidia/cuda:11.6.0-base-ubuntu20.04
-COPY --from=0 /workspace /workspace
-COPY --from=0 /opt /opt
-WORKDIR /workspace 
-ENV PATH=/workspace/bin:${PATH}
-#ENTRYPOINT ["python","/workspace/mnist/src/mnist_v2.py"]
 
