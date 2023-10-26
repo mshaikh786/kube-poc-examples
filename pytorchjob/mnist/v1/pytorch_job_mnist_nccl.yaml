@@ -7,7 +7,7 @@ spec:
   pytorchReplicaSpecs:
     Worker:
       replicas: 1
-      restartPolicy: OnFailure
+      restartPolicy: Never
       template:
         metadata:
           annotations:
@@ -16,24 +16,34 @@ spec:
           containers: 
             - name: pytorch
               image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
-              imagePullPolicy: Always
+              imagePullPolicy: IfNotPresent
               command: [ "torchrun",
                          "--nnodes", "1",
                          "--nproc_per_node","4",
+                         "--node_rank","0",
                          "/workspace/mnist/src/ddp.py",
                          "--batch-size","32",
-                         "--num-worker","8",]
+                         "--num-worker","1",]
               env:
                 - name: 'NCCL_DEBUG'
                   value: 'INFO'
                 - name: 'DATA_DIR'
                   value: '/data/tiny-imagenet-200'
-                - name: 'NCCL_DEBUG_SUBSYS'
-                  value: 'ALL'
+                    #  - name: 'NCCL_DEBUG_SUBSYS'
+                    # value: 'ALL'
                 - name: 'OMP_NUM_THREADS'
                   value: '1'
               resources: 
                 limits:
                   cpu: 8
-                  memory: '50Gi'
+                  memory: '200Gi'
                   nvidia.com/gpu: 4
+           
+              volumeMounts:
+                - name: dshm
+                  mountPath: /dev/shm
+        
+          volumes:
+            - emptyDir:
+                medium: Memory
+              name: dshm           
