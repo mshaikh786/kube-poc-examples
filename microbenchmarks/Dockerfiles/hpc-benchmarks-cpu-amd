@@ -1,0 +1,14 @@
+FROM ubuntu:22.04
+
+RUN apt-get update \
+&& apt-get install -y wget git python3 python3-distutils
+
+WORKDIR /workspace 
+RUN git clone --depth=100 --branch=releases/v0.20 https://github.com/spack/spack.git spack \
+&& cd spack 
+RUN . /workspace/spack/share/spack/setup-env.sh  \
+&& spack install hpl%aocc +openmp ^amdblis threads=openmp ^openmpi fabrics=auto
+
+RUN spack load hpl %aocc
+
+RUN spack list
