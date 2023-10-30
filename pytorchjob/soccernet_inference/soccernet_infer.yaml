@@ -25,24 +25,24 @@ spec:
           containers: 
             - name: pytorch
               image: docker.io/mshaikh/kubeflow-demo:soccernet_inference_gpu
-              imagePullPolicy: IfNotPresent
+              imagePullPolicy: Always
               command: [ "python",
                          "/software/tools/ExtractFeatures.py",
-                         "--soccernet_dirpath $(DATA_DIR)",
-                         "--game_ID 0",
+                         "--soccernet_dirpath=$(DATA_DIR)",
+                         "--game_ID=0",
                          "--back_end=TF2",
                          "--features=ResNET",
-                         "--video LQ",
-                         "--transform crop",
+                         "--video=LQ",
+                         "--transform=crop",
                          "--overwrite",
                          "--verbose",
-                         "--GPU"
+                         "--GPU=0"
                           ]
               env:
                 - name: 'NCCL_DEBUG'
                   value: 'INFO'
                 - name: 'DATA_DIR'
-                  value: '/dataset'
+                  value: '/dataset/'
                 - name: 'OMP_NUM_THREADS'
                   value: '1'
               resources:
