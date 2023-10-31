@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   pytorchReplicaSpecs:
-    Worker:
+    Master:
       replicas: 1
       restartPolicy: Never
       template:
@@ -25,16 +25,16 @@ spec:
           containers: 
             - name: pytorch
               image: docker.io/mshaikh/kubeflow-demo:soccernet_inference_gpu
-              imagePullPolicy: Always
-              command: [ "python",
+              imagePullPolicy: IfNotPresent
+              command: [ 
+                       "python",
                          "/software/tools/ExtractFeatures.py",
                          "--soccernet_dirpath=$(DATA_DIR)",
-                         "--game_ID=0",
+                         "--game_ID=$(RANK)",
                          "--back_end=TF2",
                          "--features=ResNET",
                          "--video=LQ",
                          "--transform=crop",
-                         "--overwrite",
                          "--verbose",
                          "--GPU=0"
                           ]
@@ -48,24 +48,89 @@ spec:
               resources:
                 limits:
                   cpu: 8
+                  memory: '32Gi'
+                  nvidia.com/gpu: 1
+
+              volumeMounts:
+                - name: dshm
+                  mountPath: /dev/shm
+                - name: dataset
+                  mountPath: /dataset
+
+          volumes:
+            - persistentVolumeClaim:
+                claimName: dataset
+                readOnly: True
+              name: dataset
+            - emptyDir:
+                medium: Memory
+              name: dshm
+            # - hostPath:
+            #     path: "/local/scratch/shaima0d-datasets"
+            #     type: Directory
+            #   name: host-dataset 
+    Worker:
+      replicas: 3
+      restartPolicy: Never
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: nvidia.com/gpu.product
+                      operator: In
+                      values: 
+                        - "NVIDIA-A100-SXM4-80GB-MIG-1g.10gb"
+          containers: 
+            - name: pytorch
+              image: docker.io/mshaikh/kubeflow-demo:soccernet_inference_gpu
+              imagePullPolicy: IfNotPresent
+              command: [
+                       "python",
+                         "/software/tools/ExtractFeatures.py",
+                         "--soccernet_dirpath=$(DATA_DIR)",
+                         "--game_ID=$(RANK)",
+                         "--back_end=TF2",
+                         "--features=ResNET",
+                         "--video=LQ",
+                         "--transform=crop",
+                         "--overwrite",
+                         "--verbose",
+                         "--GPU=0"
+                          ]
+              env:
+                - name: 'NCCL_DEBUG'
+                  value: 'INFO'
+                - name: 'DATA_DIR'
+                  value: '/dataset'
+                - name: 'OMP_NUM_THREADS'
+                  value: '1'
+              resources:
+                limits:
+                  cpu: 8
                   memory: '16Gi'
                   nvidia.com/gpu: 1
 
               volumeMounts:
                 - name: dshm
                   mountPath: /dev/shm
-                - name: host-dataset
+                - name: dataset
                   mountPath: /dataset
 
           volumes:
-            # - persistentVolumeClaim:
-            #     claimName: dataset
-            #     readOnly: True
-            #   name: dataset
+            - persistentVolumeClaim:
+                claimName: dataset
+                readOnly: True
+              name: dataset
             - emptyDir:
                 medium: Memory
               name: dshm
-            - hostPath:
-                path: "/local/scratch/shaima0d-datasets"
-                type: Directory
-              name: host-dataset 
+            # - hostPath:
+            #     path: "/local/scratch/shaima0d-datasets"
+            #     type: Directory
+            #   name: host-dataset 
