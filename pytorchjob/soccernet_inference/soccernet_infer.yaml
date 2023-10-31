@@ -1,7 +1,7 @@
 apiVersion: "kubeflow.org/v1"
 kind: "PyTorchJob"
 metadata:
-  name: "dist"
+  name: "tmp"
   namespace: default
 spec:
   pytorchReplicaSpecs:
@@ -13,32 +13,59 @@ spec:
           annotations:
             sidecar.istio.io/inject: "false"
         spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: nvidia.com/gpu.product
+                      operator: In
+                      values: 
+                        - "NVIDIA-A100-SXM4-80GB-MIG-1g.10gb"
           containers: 
             - name: pytorch
-              image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
-              imagePullPolicy: IfNotPresent
-              command: [ 
+              image: docker.io/mshaikh/kubeflow-demo:soccernet_inference_gpu
+              imagePullPolicy: Always
+              command: [ "python",
+                         "/software/tools/ExtractFeatures.py",
+                         "--soccernet_dirpath=$(DATA_DIR)",
+                         "--game_ID=0",
+                         "--back_end=TF2",
+                         "--features=ResNET",
+                         "--video=LQ",
+                         "--transform=crop",
+                         "--overwrite",
+                         "--verbose",
+                         "--GPU=0"
                           ]
               env:
                 - name: 'NCCL_DEBUG'
                   value: 'INFO'
                 - name: 'DATA_DIR'
-                  value: '/data/tiny-imagenet-200'
-                    #  - name: 'NCCL_DEBUG_SUBSYS'
-                    # value: 'ALL'
+                  value: '/dataset/'
                 - name: 'OMP_NUM_THREADS'
                   value: '1'
-              resources: 
+              resources:
                 limits:
                   cpu: 8
-                  memory: '200Gi'
-                  nvidia.com/gpu: 4
-           
+                  memory: '16Gi'
+                  nvidia.com/gpu: 1
+
               volumeMounts:
                 - name: dshm
                   mountPath: /dev/shm
-        
+                - name: host-dataset
+                  mountPath: /dataset
+
           volumes:
+            # - persistentVolumeClaim:
+            #     claimName: dataset
+            #     readOnly: True
+            #   name: dataset
             - emptyDir:
                 medium: Memory
-              name: dshm           
+              name: dshm
+            - hostPath:
+                path: "/local/scratch/shaima0d-datasets"
+                type: Directory
+              name: host-dataset 
