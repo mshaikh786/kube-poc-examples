@@ -7,7 +7,7 @@ spec:
   pytorchReplicaSpecs:
     Master:
       replicas: 1
-      restartPolicy: Never
+      restartPolicy: OnFailure
       template:
         metadata:
           annotations:
@@ -47,8 +47,8 @@ spec:
                   value: '1'
               resources:
                 limits:
-                  cpu: 8
-                  memory: '32Gi'
+                  cpu: 4
+                  memory: '20Gi'
                   nvidia.com/gpu: 1
 
               volumeMounts:
@@ -59,19 +59,15 @@ spec:
 
           volumes:
             - persistentVolumeClaim:
-                claimName: dataset
+                claimName: soccernet
                 readOnly: True
               name: dataset
             - emptyDir:
                 medium: Memory
               name: dshm
-            # - hostPath:
-            #     path: "/local/scratch/shaima0d-datasets"
-            #     type: Directory
-            #   name: host-dataset 
     Worker:
-      replicas: 3
-      restartPolicy: Never
+      replicas: 10
+      restartPolicy: OnFailure
       template:
         metadata:
           annotations:
@@ -99,7 +95,6 @@ spec:
                          "--features=ResNET",
                          "--video=LQ",
                          "--transform=crop",
-                         "--overwrite",
                          "--verbose",
                          "--GPU=0"
                           ]
@@ -112,8 +107,8 @@ spec:
                   value: '1'
               resources:
                 limits:
-                  cpu: 8
-                  memory: '16Gi'
+                  cpu: 4
+                  memory: '20Gi'
                   nvidia.com/gpu: 1
 
               volumeMounts:
@@ -124,13 +119,9 @@ spec:
 
           volumes:
             - persistentVolumeClaim:
-                claimName: dataset
+                claimName: soccernet
                 readOnly: True
               name: dataset
             - emptyDir:
                 medium: Memory
               name: dshm
-            # - hostPath:
-            #     path: "/local/scratch/shaima0d-datasets"
-            #     type: Directory
-            #   name: host-dataset 
