@@ -3,14 +3,8 @@ FROM spack/ubuntu-jammy:latest as builder
 
 # What we want to install and how we want to install it
 # is specified in a manifest file (spack.yaml)
-RUN mkdir /opt/spack-environment \
-&&  (echo "spack:" \
-&&   echo "  specs:" \
-&&   echo "  - hpl +openmp  " \
-#&&   echo "  concretization: together" \
-&&   echo "  config:" \
-&&   echo "    install_tree: /opt/software" \
-&&   echo "  view: /opt/view") > /opt/spack-environment/spack.yaml
+RUN mkdir /opt/spack-environment 
+COPY hpl-amd-spack.yaml /opt/spack-environment/spack.yaml
 
 # Install the software, remove unnecessary deps
 RUN cd /opt/spack-environment && spack env activate . && spack install --fail-fast && spack gc -y

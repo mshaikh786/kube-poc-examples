@@ -1,0 +1,31 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  specs:
+  - aocc+license-agreed
+  - amdblis threads=openmp
+  - openmpi+pmi fabrics=auto schedulers=slurm
+  - hpl%aocc+openmp
+  view: true
+  concretizer:
+    unify: true
+  compilers:
+  - compiler:
+      spec: aocc@=4.1.0
+      paths:
+        cc: /opt/hpl-amd/.spack-env/view/bin/clang
+        cxx: /opt/hpl-amd/.spack-env/view/bin/clang++
+        f77: /opt/hpl-amd/.spack-env/view/bin/flang
+        fc: /opt/hpl-amd/.spack-env/view/bin/flang
+      flags:
+        cflags: null
+        cxxflags: null
+        fflags: null
+      operating_system: ubuntu22.04
+      target: x86_64
+      modules: []
+      environment: {}
+      extra_rpaths: []
