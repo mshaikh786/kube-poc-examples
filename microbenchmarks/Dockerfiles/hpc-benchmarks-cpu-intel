@@ -1,0 +1,41 @@
+# Build stage with Spack pre-installed and ready to be used
+FROM spack/ubuntu-jammy:latest as builder
+
+# What we want to install and how we want to install it
+# is specified in a manifest file (spack.yaml)
+WORKDIR /opt 
+RUN  spack env create -d /opt/environment
+COPY test.yaml /opt/environment/spack.yaml
+
+# Install the software, remove unnecessary deps
+RUN cd /opt/environment \
+&& spack env activate /opt/environment \
+&& spack install --fail-fast \
+&& spack gc -y
+
+# Strip all the binaries
+#RUN find -L /opt/view/* -type f -exec readlink -f '{}' \; | \
+#    xargs file -i | \
+#    grep 'charset=binary' | \
+#    grep 'x-executable\|x-archive\|x-sharedlib' | \
+#    awk -F: '{print $1}' | xargs strip -s
+
+# Modifications to the environment that are necessary to run
+RUN cd /opt/environment && \
+    spack env activate --sh -d . >> /etc/profile.d/z10_spack_environment.sh
+
+# Bare OS image to run the installed executables
+#FROM ubuntu:22.04
+
+##COPY --from=builder /opt/environment /opt/environment
+#COPY --from=builder /etc/profile.d/z10_spack_environment.sh /etc/profile.d/z10_spack_environment.sh
+
+#WORKDIR /opt/environment
+#RUN mv /opt/environment/.spack-env/._view/*/*  /opt/environment
+# ENV PATH=/opt/environment/bin:${PATH}
+# ENV LD_LIBRARY_PATH=/opt/environment/lib:/opt/environment/lib64:${LD_LIBRARY_PATH} 
+
+WORKDIR /workdir
+COPY HPL-CPU.dat HPL.dat
+ENTRYPOINT ["/bin/bash", "--rcfile", "/etc/profile", "-l"]
+# CMD ['mpirun','-np','4','xhpl']

@@ -1,0 +1,11 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  definitions:
+  - compilers: [gcc@12.3.0]
+  - mpis: [openmpi@4.1.6]
+  - packages: [hpl@2.3+openmp]
+
+
