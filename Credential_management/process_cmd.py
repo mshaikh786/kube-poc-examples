@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import csv,os
 import argparse, subprocess as sb
 def create_users(filename):
@@ -16,15 +17,23 @@ def create_users(filename):
                 email=row[4]
            
                 sb.run(['ipa','user-add','%s' %username,
-                '--password', '--uid=%s'%uid, 
+                '--uid=%s'%uid, 
                 '--gidnumber=%d'%gid, 
                 '--first=%s'%First,'--last=%s'%Last,
                 '--homedir=/home/%s'%uid,
                 '--email=%s'%email] )
-            i+=1
+                sb.run(['ipa','passwd','%s' %username,'%s'%password] )
 
+            i+=1
+def delete_user(username):
+    sb.run(['ipa','user-del','%s'%username])
+    return 0
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-f',type=str,help='CSV filename with information about users') 
+    parser.add_argument('-d',type=str,help='delete user') 
     args=parser.parse_args()
-    create_users(args.f)
+    if args.f is not None:
+        create_users(args.f)
+    elif args.d is not None:
+        delete_user(args.d)
