@@ -61,7 +61,7 @@ RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIF
  && echo "python ${PYTHON_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned 
 
 # install packages
-RUN pip install  --no-cache-dir kubeflow-kale 
+RUN pip install --no-cache-dir kubeflow-kale rok_gw_client
 RUN pip install --no-cache-dir "jupyterlab>=2.0,<3.0" notebook ipykernel nb-conda-store-kernels nodejs 
 RUN jupyter labextension install kubeflow-kale-labextension \
 && jupyter lab --generate-config \
