@@ -1,0 +1,53 @@
+apiVersion: kubeflow.org/v1
+kind: MPIJob
+metadata:
+  name: hpl
+spec:
+  slotsPerWorker: 1
+#  runPolicy:
+#    cleanPodPolicy: Running
+  mpiReplicaSpecs:
+    Launcher:
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - image: mshaikh/kubeflow-demo:hpl-cpu_intel
+            name: hpl
+            command:
+            - mpirun
+            args:
+            - -np
+            - "2"
+            - --allow-run-as-root
+            - -bind-to
+            - none
+            - -map-by
+            - slot
+            - -x
+            - LD_LIBRARY_PATH
+            - -x
+            - PATH
+            - -mca
+            - pml
+            - ob1
+            - -mca
+            - btl
+            - ^openib
+            - xhpl
+            resources:
+              limits:
+                cpu: 1
+                memory: 2Gi
+    Worker:
+      replicas: 2
+      template:
+        spec:
+          containers:
+          - image: mshaikh/kubeflow-demo:hpl-cpu_intel
+            name: mpi
+            resources:
+              limits:
+                cpu: 2
+                memory: 4Gi
+
