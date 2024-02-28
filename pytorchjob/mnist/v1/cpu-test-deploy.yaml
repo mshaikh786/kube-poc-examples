@@ -1,0 +1,34 @@
+# Request a deployment with replicaSet using MIG for each replica
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cputest
+  namespace: default
+  labels: 
+    app: cpu-deployment
+spec:
+  replicas: 28
+  selector:
+    matchLabels:
+      app: cpu
+  template:
+    metadata:
+      labels:
+        app: cpu
+    spec:
+      containers:
+        - name: cpu
+          image: docker.io/mshaikh/kubeflow-demo:cpu-samples-11.6.0
+          imagePullPolicy: Always
+          command: [ "echo ${HELLOWORLD}"]
+          resources:
+            requests:
+              cpu: 1
+              memory: 2Gi
+            limits:
+              cpu: 1
+              memory: 2Gi
+        - env:
+            - name: 'HELLOWORLD'
+              value: 'I AM HERE'
+

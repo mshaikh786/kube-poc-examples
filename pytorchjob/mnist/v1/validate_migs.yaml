@@ -1,0 +1,20 @@
+# Request a MIG using nodeSelector
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dist
+spec:
+  restartPolicy: Never
+  containers:
+    - name: dist
+      image: docker.io/mshaikh/kubeflow-demo:kf-dist-torch-vanilla
+      imagePullPolicy: Always
+      command: [ "python",
+                 "-m", "torch.distributed.launch", "--use_env",
+                 "/workspace/mnist/src/mnist.py","--epochs=100", "--batch-size=32","--backend", "nccl"]
+      env:
+         - name: 'NCCL_DEBUG'
+           value: 'INFO'
+      resources:
+        limits:
+          nvidia.com/mig-1g.10gb: 2

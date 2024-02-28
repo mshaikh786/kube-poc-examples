@@ -1,0 +1,19 @@
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: reference-data
+  namespace: default
+spec:
+ selector:
+  matchLabels:
+    reference-data: "true"
+ desc: "Reference datasets and examples"
+ volumeMounts:
+ - name: reference-volume
+   mountPath: /reference
+   readOnly: true
+ volumes:
+ - name: reference-volume
+   hostPath:
+           path: /local/scratch
+           type: Directory

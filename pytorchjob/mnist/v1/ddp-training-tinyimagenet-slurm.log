@@ -1,0 +1,676 @@
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+L-0 : W-4 , R-0 
+
+L-2 : W-4 , R-2 
+
+L-1 : W-4 , R-1 
+
+L-3 : W-4 , R-3 
+
+SLURM_JOB_START_TIME: 1698355718
+SLURM_NODELIST: gpu212-10
+SLURM_JOB_NAME: ddp.slurm
+MANPATH: /opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man:/opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man::/opt/puppetlabs/puppet/share/man
+XDG_SESSION_ID: 98802
+SLURMD_NODENAME: gpu212-10
+SLURM_TOPOLOGY_ADDR: main-intel.ibsw-intel-02-2.gpu212-10
+HOSTNAME: gpu212-10
+SLURM_PRIO_PROCESS: 0
+SLURM_NODE_ALIASES: (null)
+SLURM_GPUS_ON_NODE: 4
+SHELL: /bin/bash
+TERM: xterm-256color
+NCCL_SOCKET_IFNAME: ib0
+SLURM_JOB_QOS: ibex-cs
+HISTSIZE: 1000
+TMPDIR: /tmp
+SLURM_TOPOLOGY_ADDR_PATTERN: switch.switch.node
+SSH_CLIENT: 10.204.71.14 50390 22
+CONDA_SHLVL: 1
+CONDA_PROMPT_MODIFIER: (dist-pytorch) 
+KAUST_ARCH: x86_64
+DATA_DIR: /ibex/ai/reference/CV/tinyimagenet
+QTDIR: /usr/lib64/qt-3.3
+SLURM_JOB_END_TIME: 1698356918
+SLURM_JOB_GPUS: 0,1,2,4
+QTINC: /usr/lib64/qt-3.3/include
+SSH_TTY: /dev/pts/14
+SLURM_MEM_PER_CPU: 2048
+QT_GRAPHICSSYSTEM_CHECKED: 1
+ROCR_VISIBLE_DEVICES: 0,1,2,3
+SLURM_NNODES: 1
+SLURM_GPUS: 4
+USER: shaima0d
+LS_COLORS: rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+CONDA_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/conda
+SLURM_JOBID: 28973810
+KAUST_DISTRO: CentOS/7.9.2009
+TMOUT: 7200
+SLURM_NTASKS: 1
+MKL_INTERFACE_LAYER: LP64,GNU
+_CE_CONDA: 
+SLURM_TASKS_PER_NODE: 1
+PATH: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin:/ibex/ai/home/shaima0d/miniconda3/condabin:/opt/conda/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/lib64/qt-3.3/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/slurm/scripts/bin:/opt/puppetlabs/bin:/opt/slurm/scripts/bin
+MAIL: /var/spool/mail/shaima0d
+LIBGL_ALWAYS_INDIRECT: 1
+SLURM_WORKING_CLUSTER: dragon:slurm-01:6917:9984:109
+SLURM_CONF: /opt/slurm/cluster/ibex/slurm/slurm.conf
+KAUST_APPS_ROOT: /cbrc/software
+SH3_TDS: 192.48.187.135
+CONDA_MKL_INTERFACE_LAYER_BACKUP: 
+SLURM_JOB_ID: 28973810
+SLURM_CPUS_PER_TASK: 8
+KAUST_NODETYPE: gpu
+CONDA_PREFIX: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch
+SLURM_JOB_USER: shaima0d
+PWD: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+PYTHONFAULTHANDLER: 1
+CUDA_VISIBLE_DEVICES: 0,1,2,3
+LANG: en_US.UTF-8
+MODULEPATH: /sw/csgv/modulefiles/applications:/sw/csgv/modulefiles/compilers:/sw/csgv/modulefiles/libs:/sw/services/modulefiles
+PYTHONSTARTUP: /home/shaima0d/.pythonrc
+SLURM_JOB_UID: 174988
+KDEDIRS: /usr
+SLURM_NODEID: 0
+SLURM_SUBMIT_DIR: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+SLURM_TASK_PID: 116445
+ZE_AFFINITY_MASK: 0,1,2,3
+SLURM_NPROCS: 1
+KAUST_MODULES_ROOT: /cbrc/modules
+SLURM_CPUS_ON_NODE: 8
+_CE_M: 
+SLURM_PROCID: 0
+ENVIRONMENT: BATCH
+HISTCONTROL: ignoredups
+SLURM_JOB_NODELIST: gpu212-10
+HOME: /home/shaima0d
+SHLVL: 2
+SLURM_LOCALID: 0
+SLURM_JOB_GID: 1174988
+SLURM_JOB_CPUS_PER_NODE: 8
+SLURM_CLUSTER_NAME: dragon
+KAUST_FACILITY: Ibex
+SLURM_GTIDS: 0
+SLURM_SUBMIT_HOST: login510-27
+SLURM_JOB_PARTITION: gpu
+CONDA_PYTHON_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/python
+LOGNAME: shaima0d
+QTLIB: /usr/lib64/qt-3.3/lib
+GPU_DEVICE_ORDINAL: 0,1,2,3
+SLURM_JOB_ACCOUNT: c2227
+SSH_CONNECTION: 10.204.71.14 50390 10.109.66.157 22
+XDG_DATA_DIRS: /home/shaima0d/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+SLURM_JOB_NUM_NODES: 1
+MODULESHOME: /usr/share/Modules
+CONDA_DEFAULT_ENV: dist-pytorch
+LESSOPEN: ||/usr/bin/lesspipe.sh %s
+SLURM_GPUS_PER_NODE: 4
+XDG_RUNTIME_DIR: /run/user/174988
+QT_PLUGIN_PATH: /usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+NCCL_DEBUG: INFO
+BASH_FUNC_module(): () {  eval `/usr/bin/modulecmd bash $*`
+}
+_: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin/torchrun
+OMP_NUM_THREADS: 1
+LOCAL_RANK: 3
+RANK: 3
+GROUP_RANK: 0
+ROLE_RANK: 3
+ROLE_NAME: default
+LOCAL_WORLD_SIZE: 4
+WORLD_SIZE: 4
+GROUP_WORLD_SIZE: 1
+ROLE_WORLD_SIZE: 4
+MASTER_ADDR: 127.0.0.1
+MASTER_PORT: 29500
+TORCHELASTIC_RESTART_COUNT: 0
+TORCHELASTIC_MAX_RESTARTS: 0
+TORCHELASTIC_RUN_ID: none
+TORCHELASTIC_USE_AGENT_STORE: True
+NCCL_ASYNC_ERROR_HANDLING: 1
+TORCHELASTIC_ERROR_FILE: /tmp/torchelastic_o4akf_g8/none_oxwgmq2n/attempt_0/3/error.json
+CRC32C_SW_MODE: auto
+SLURM_JOB_START_TIME: 1698355718
+SLURM_NODELIST: gpu212-10
+SLURM_JOB_NAME: ddp.slurm
+MANPATH: /opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man:/opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man::/opt/puppetlabs/puppet/share/man
+XDG_SESSION_ID: 98802
+SLURMD_NODENAME: gpu212-10
+SLURM_TOPOLOGY_ADDR: main-intel.ibsw-intel-02-2.gpu212-10
+HOSTNAME: gpu212-10
+SLURM_PRIO_PROCESS: 0
+SLURM_NODE_ALIASES: (null)
+SLURM_GPUS_ON_NODE: 4
+SHELL: /bin/bash
+TERM: xterm-256color
+NCCL_SOCKET_IFNAME: ib0
+SLURM_JOB_QOS: ibex-cs
+HISTSIZE: 1000
+TMPDIR: /tmp
+SLURM_TOPOLOGY_ADDR_PATTERN: switch.switch.node
+SSH_CLIENT: 10.204.71.14 50390 22
+CONDA_SHLVL: 1
+CONDA_PROMPT_MODIFIER: (dist-pytorch) 
+KAUST_ARCH: x86_64
+DATA_DIR: /ibex/ai/reference/CV/tinyimagenet
+QTDIR: /usr/lib64/qt-3.3
+SLURM_JOB_END_TIME: 1698356918
+SLURM_JOB_GPUS: 0,1,2,4
+QTINC: /usr/lib64/qt-3.3/include
+SSH_TTY: /dev/pts/14
+SLURM_MEM_PER_CPU: 2048
+QT_GRAPHICSSYSTEM_CHECKED: 1
+ROCR_VISIBLE_DEVICES: 0,1,2,3
+SLURM_NNODES: 1
+SLURM_GPUS: 4
+USER: shaima0d
+LS_COLORS: rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+CONDA_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/conda
+SLURM_JOBID: 28973810
+KAUST_DISTRO: CentOS/7.9.2009
+TMOUT: 7200
+SLURM_NTASKS: 1
+MKL_INTERFACE_LAYER: LP64,GNU
+_CE_CONDA: 
+SLURM_TASKS_PER_NODE: 1
+PATH: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin:/ibex/ai/home/shaima0d/miniconda3/condabin:/opt/conda/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/lib64/qt-3.3/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/slurm/scripts/bin:/opt/puppetlabs/bin:/opt/slurm/scripts/bin
+MAIL: /var/spool/mail/shaima0d
+LIBGL_ALWAYS_INDIRECT: 1
+SLURM_WORKING_CLUSTER: dragon:slurm-01:6917:9984:109
+SLURM_CONF: /opt/slurm/cluster/ibex/slurm/slurm.conf
+KAUST_APPS_ROOT: /cbrc/software
+SH3_TDS: 192.48.187.135
+CONDA_MKL_INTERFACE_LAYER_BACKUP: 
+SLURM_JOB_ID: 28973810
+SLURM_CPUS_PER_TASK: 8
+KAUST_NODETYPE: gpu
+CONDA_PREFIX: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch
+SLURM_JOB_USER: shaima0d
+PWD: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+PYTHONFAULTHANDLER: 1
+CUDA_VISIBLE_DEVICES: 0,1,2,3
+LANG: en_US.UTF-8
+MODULEPATH: /sw/csgv/modulefiles/applications:/sw/csgv/modulefiles/compilers:/sw/csgv/modulefiles/libs:/sw/services/modulefiles
+PYTHONSTARTUP: /home/shaima0d/.pythonrc
+SLURM_JOB_UID: 174988
+KDEDIRS: /usr
+SLURM_NODEID: 0
+SLURM_SUBMIT_DIR: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+SLURM_TASK_PID: 116445
+ZE_AFFINITY_MASK: 0,1,2,3
+SLURM_NPROCS: 1
+KAUST_MODULES_ROOT: /cbrc/modules
+SLURM_CPUS_ON_NODE: 8
+_CE_M: 
+SLURM_PROCID: 0
+ENVIRONMENT: BATCH
+HISTCONTROL: ignoredups
+SLURM_JOB_NODELIST: gpu212-10
+HOME: /home/shaima0d
+SHLVL: 2
+SLURM_LOCALID: 0
+SLURM_JOB_GID: 1174988
+SLURM_JOB_CPUS_PER_NODE: 8
+SLURM_CLUSTER_NAME: dragon
+KAUST_FACILITY: Ibex
+SLURM_GTIDS: 0
+SLURM_SUBMIT_HOST: login510-27
+SLURM_JOB_PARTITION: gpu
+CONDA_PYTHON_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/python
+LOGNAME: shaima0d
+QTLIB: /usr/lib64/qt-3.3/lib
+GPU_DEVICE_ORDINAL: 0,1,2,3
+SLURM_JOB_ACCOUNT: c2227
+SSH_CONNECTION: 10.204.71.14 50390 10.109.66.157 22
+XDG_DATA_DIRS: /home/shaima0d/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+SLURM_JOB_NUM_NODES: 1
+MODULESHOME: /usr/share/Modules
+CONDA_DEFAULT_ENV: dist-pytorch
+LESSOPEN: ||/usr/bin/lesspipe.sh %s
+SLURM_GPUS_PER_NODE: 4
+XDG_RUNTIME_DIR: /run/user/174988
+QT_PLUGIN_PATH: /usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+NCCL_DEBUG: INFO
+BASH_FUNC_module(): () {  eval `/usr/bin/modulecmd bash $*`
+}
+_: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin/torchrun
+OMP_NUM_THREADS: 1
+LOCAL_RANK: 0
+RANK: 0
+GROUP_RANK: 0
+ROLE_RANK: 0
+ROLE_NAME: default
+LOCAL_WORLD_SIZE: 4
+WORLD_SIZE: 4
+GROUP_WORLD_SIZE: 1
+ROLE_WORLD_SIZE: 4
+MASTER_ADDR: 127.0.0.1
+MASTER_PORT: 29500
+TORCHELASTIC_RESTART_COUNT: 0
+TORCHELASTIC_MAX_RESTARTS: 0
+TORCHELASTIC_RUN_ID: none
+TORCHELASTIC_USE_AGENT_STORE: True
+NCCL_ASYNC_ERROR_HANDLING: 1
+TORCHELASTIC_ERROR_FILE: /tmp/torchelastic_o4akf_g8/none_oxwgmq2n/attempt_0/0/error.json
+CRC32C_SW_MODE: auto
+SLURM_JOB_START_TIME: 1698355718
+SLURM_NODELIST: gpu212-10
+SLURM_JOB_NAME: ddp.slurm
+MANPATH: /opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man:/opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man::/opt/puppetlabs/puppet/share/man
+XDG_SESSION_ID: 98802
+SLURMD_NODENAME: gpu212-10
+SLURM_TOPOLOGY_ADDR: main-intel.ibsw-intel-02-2.gpu212-10
+HOSTNAME: gpu212-10
+SLURM_PRIO_PROCESS: 0
+SLURM_NODE_ALIASES: (null)
+SLURM_GPUS_ON_NODE: 4
+SHELL: /bin/bash
+TERM: xterm-256color
+NCCL_SOCKET_IFNAME: ib0
+SLURM_JOB_QOS: ibex-cs
+HISTSIZE: 1000
+TMPDIR: /tmp
+SLURM_TOPOLOGY_ADDR_PATTERN: switch.switch.node
+SSH_CLIENT: 10.204.71.14 50390 22
+CONDA_SHLVL: 1
+CONDA_PROMPT_MODIFIER: (dist-pytorch) 
+KAUST_ARCH: x86_64
+DATA_DIR: /ibex/ai/reference/CV/tinyimagenet
+QTDIR: /usr/lib64/qt-3.3
+SLURM_JOB_END_TIME: 1698356918
+SLURM_JOB_GPUS: 0,1,2,4
+QTINC: /usr/lib64/qt-3.3/include
+SLURM_JOB_START_TIME: 1698355718SSH_TTY: /dev/pts/14
+
+SLURM_NODELIST: gpu212-10SLURM_MEM_PER_CPU: 2048
+
+SLURM_JOB_NAME: ddp.slurm
+QT_GRAPHICSSYSTEM_CHECKED: 1
+MANPATH: /opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man:/opt/slurm/cluster/ibex/install-v2/RedHat-7/share/man::/opt/puppetlabs/puppet/share/man
+ROCR_VISIBLE_DEVICES: 0,1,2,3XDG_SESSION_ID: 98802
+
+SLURMD_NODENAME: gpu212-10SLURM_NNODES: 1
+
+SLURM_TOPOLOGY_ADDR: main-intel.ibsw-intel-02-2.gpu212-10SLURM_GPUS: 4
+
+HOSTNAME: gpu212-10
+USER: shaima0dSLURM_PRIO_PROCESS: 0
+
+SLURM_NODE_ALIASES: (null)
+SLURM_GPUS_ON_NODE: 4
+SHELL: /bin/bashLS_COLORS: rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+TERM: xterm-256color
+
+NCCL_SOCKET_IFNAME: ib0
+CONDA_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/condaSLURM_JOB_QOS: ibex-cs
+
+HISTSIZE: 1000SLURM_JOBID: 28973810
+
+TMPDIR: /tmp
+KAUST_DISTRO: CentOS/7.9.2009SLURM_TOPOLOGY_ADDR_PATTERN: switch.switch.node
+
+SSH_CLIENT: 10.204.71.14 50390 22TMOUT: 7200
+
+CONDA_SHLVL: 1
+SLURM_NTASKS: 1CONDA_PROMPT_MODIFIER: (dist-pytorch) 
+
+KAUST_ARCH: x86_64MKL_INTERFACE_LAYER: LP64,GNU
+
+DATA_DIR: /ibex/ai/reference/CV/tinyimagenet
+_CE_CONDA: QTDIR: /usr/lib64/qt-3.3
+
+SLURM_JOB_END_TIME: 1698356918SLURM_TASKS_PER_NODE: 1
+
+SLURM_JOB_GPUS: 0,1,2,4
+QTINC: /usr/lib64/qt-3.3/includePATH: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin:/ibex/ai/home/shaima0d/miniconda3/condabin:/opt/conda/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/lib64/qt-3.3/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/slurm/scripts/bin:/opt/puppetlabs/bin:/opt/slurm/scripts/bin
+
+SSH_TTY: /dev/pts/14
+MAIL: /var/spool/mail/shaima0dSLURM_MEM_PER_CPU: 2048
+
+QT_GRAPHICSSYSTEM_CHECKED: 1LIBGL_ALWAYS_INDIRECT: 1
+
+ROCR_VISIBLE_DEVICES: 0,1,2,3
+SLURM_WORKING_CLUSTER: dragon:slurm-01:6917:9984:109SLURM_NNODES: 1
+
+SLURM_GPUS: 4SLURM_CONF: /opt/slurm/cluster/ibex/slurm/slurm.conf
+
+USER: shaima0d
+KAUST_APPS_ROOT: /cbrc/software
+SH3_TDS: 192.48.187.135
+LS_COLORS: rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:CONDA_MKL_INTERFACE_LAYER_BACKUP: 
+
+CONDA_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/conda
+SLURM_JOB_ID: 28973810SLURM_JOBID: 28973810
+
+KAUST_DISTRO: CentOS/7.9.2009SLURM_CPUS_PER_TASK: 8
+
+TMOUT: 7200
+KAUST_NODETYPE: gpuSLURM_NTASKS: 1
+
+MKL_INTERFACE_LAYER: LP64,GNUCONDA_PREFIX: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch
+
+_CE_CONDA: 
+SLURM_JOB_USER: shaima0dSLURM_TASKS_PER_NODE: 1
+
+PATH: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin:/ibex/ai/home/shaima0d/miniconda3/condabin:/opt/conda/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/lib64/qt-3.3/bin:/opt/slurm/puppet/bin:/opt/slurm/cluster/ibex/install-v2/RedHat-7/bin:/opt/slurm/scripts/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/slurm/scripts/bin:/opt/puppetlabs/bin:/opt/slurm/scripts/binPWD: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+
+MAIL: /var/spool/mail/shaima0d
+PYTHONFAULTHANDLER: 1LIBGL_ALWAYS_INDIRECT: 1
+
+SLURM_WORKING_CLUSTER: dragon:slurm-01:6917:9984:109CUDA_VISIBLE_DEVICES: 0,1,2,3
+
+SLURM_CONF: /opt/slurm/cluster/ibex/slurm/slurm.conf
+LANG: en_US.UTF-8KAUST_APPS_ROOT: /cbrc/software
+
+SH3_TDS: 192.48.187.135
+MODULEPATH: /sw/csgv/modulefiles/applications:/sw/csgv/modulefiles/compilers:/sw/csgv/modulefiles/libs:/sw/services/modulefilesCONDA_MKL_INTERFACE_LAYER_BACKUP: 
+
+SLURM_JOB_ID: 28973810PYTHONSTARTUP: /home/shaima0d/.pythonrc
+
+SLURM_CPUS_PER_TASK: 8
+SLURM_JOB_UID: 174988KAUST_NODETYPE: gpu
+
+CONDA_PREFIX: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorchKDEDIRS: /usr
+
+SLURM_JOB_USER: shaima0d
+SLURM_NODEID: 0PWD: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+
+PYTHONFAULTHANDLER: 1SLURM_SUBMIT_DIR: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+
+CUDA_VISIBLE_DEVICES: 0,1,2,3
+SLURM_TASK_PID: 116445LANG: en_US.UTF-8
+
+MODULEPATH: /sw/csgv/modulefiles/applications:/sw/csgv/modulefiles/compilers:/sw/csgv/modulefiles/libs:/sw/services/modulefilesZE_AFFINITY_MASK: 0,1,2,3
+
+PYTHONSTARTUP: /home/shaima0d/.pythonrcSLURM_NPROCS: 1
+
+SLURM_JOB_UID: 174988KAUST_MODULES_ROOT: /cbrc/modules
+
+KDEDIRS: /usrSLURM_CPUS_ON_NODE: 8
+
+SLURM_NODEID: 0_CE_M: 
+
+SLURM_PROCID: 0SLURM_SUBMIT_DIR: /home/shaima0d/kube-poc-examples/pytorchjob/mnist/v1
+
+ENVIRONMENT: BATCH
+SLURM_TASK_PID: 116445
+HISTCONTROL: ignoredups
+ZE_AFFINITY_MASK: 0,1,2,3SLURM_JOB_NODELIST: gpu212-10
+
+SLURM_NPROCS: 1HOME: /home/shaima0d
+
+KAUST_MODULES_ROOT: /cbrc/modulesSHLVL: 2
+
+SLURM_LOCALID: 0SLURM_CPUS_ON_NODE: 8
+
+SLURM_JOB_GID: 1174988
+_CE_M: 
+SLURM_JOB_CPUS_PER_NODE: 8
+SLURM_PROCID: 0SLURM_CLUSTER_NAME: dragon
+
+KAUST_FACILITY: IbexENVIRONMENT: BATCH
+
+SLURM_GTIDS: 0
+HISTCONTROL: ignoredups
+SLURM_SUBMIT_HOST: login510-27
+SLURM_JOB_NODELIST: gpu212-10SLURM_JOB_PARTITION: gpu
+
+CONDA_PYTHON_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/pythonHOME: /home/shaima0d
+
+LOGNAME: shaima0d
+SHLVL: 2
+QTLIB: /usr/lib64/qt-3.3/lib
+SLURM_LOCALID: 0GPU_DEVICE_ORDINAL: 0,1,2,3
+
+SLURM_JOB_GID: 1174988SLURM_JOB_ACCOUNT: c2227
+
+SSH_CONNECTION: 10.204.71.14 50390 10.109.66.157 22SLURM_JOB_CPUS_PER_NODE: 8
+
+XDG_DATA_DIRS: /home/shaima0d/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/shareSLURM_CLUSTER_NAME: dragon
+
+SLURM_JOB_NUM_NODES: 1
+KAUST_FACILITY: Ibex
+MODULESHOME: /usr/share/Modules
+SLURM_GTIDS: 0CONDA_DEFAULT_ENV: dist-pytorch
+
+SLURM_SUBMIT_HOST: login510-27LESSOPEN: ||/usr/bin/lesspipe.sh %s
+
+SLURM_GPUS_PER_NODE: 4SLURM_JOB_PARTITION: gpu
+
+XDG_RUNTIME_DIR: /run/user/174988
+CONDA_PYTHON_EXE: /ibex/ai/home/shaima0d/miniconda3/bin/python
+QT_PLUGIN_PATH: /usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+LOGNAME: shaima0dNCCL_DEBUG: INFO
+
+BASH_FUNC_module(): () {  eval `/usr/bin/modulecmd bash $*`
+}QTLIB: /usr/lib64/qt-3.3/lib
+
+_: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin/torchrunGPU_DEVICE_ORDINAL: 0,1,2,3
+
+OMP_NUM_THREADS: 1
+SLURM_JOB_ACCOUNT: c2227
+LOCAL_RANK: 1
+SSH_CONNECTION: 10.204.71.14 50390 10.109.66.157 22RANK: 1
+
+GROUP_RANK: 0XDG_DATA_DIRS: /home/shaima0d/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+
+ROLE_RANK: 1
+SLURM_JOB_NUM_NODES: 1
+ROLE_NAME: default
+MODULESHOME: /usr/share/ModulesLOCAL_WORLD_SIZE: 4
+
+WORLD_SIZE: 4CONDA_DEFAULT_ENV: dist-pytorch
+
+GROUP_WORLD_SIZE: 1
+LESSOPEN: ||/usr/bin/lesspipe.sh %s
+ROLE_WORLD_SIZE: 4
+SLURM_GPUS_PER_NODE: 4MASTER_ADDR: 127.0.0.1
+
+MASTER_PORT: 29500XDG_RUNTIME_DIR: /run/user/174988
+
+TORCHELASTIC_RESTART_COUNT: 0QT_PLUGIN_PATH: /usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+
+TORCHELASTIC_MAX_RESTARTS: 0
+NCCL_DEBUG: INFO
+TORCHELASTIC_RUN_ID: none
+BASH_FUNC_module(): () {  eval `/usr/bin/modulecmd bash $*`
+}TORCHELASTIC_USE_AGENT_STORE: True
+
+NCCL_ASYNC_ERROR_HANDLING: 1_: /ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/bin/torchrun
+
+TORCHELASTIC_ERROR_FILE: /tmp/torchelastic_o4akf_g8/none_oxwgmq2n/attempt_0/1/error.json
+OMP_NUM_THREADS: 1
+CRC32C_SW_MODE: auto
+LOCAL_RANK: 2
+RANK: 2
+GROUP_RANK: 0
+ROLE_RANK: 2
+ROLE_NAME: default
+LOCAL_WORLD_SIZE: 4
+WORLD_SIZE: 4
+GROUP_WORLD_SIZE: 1
+ROLE_WORLD_SIZE: 4
+MASTER_ADDR: 127.0.0.1
+MASTER_PORT: 29500
+TORCHELASTIC_RESTART_COUNT: 0
+TORCHELASTIC_MAX_RESTARTS: 0
+TORCHELASTIC_RUN_ID: none
+TORCHELASTIC_USE_AGENT_STORE: True
+NCCL_ASYNC_ERROR_HANDLING: 1
+TORCHELASTIC_ERROR_FILE: /tmp/torchelastic_o4akf_g8/none_oxwgmq2n/attempt_0/2/error.json
+CRC32C_SW_MODE: auto
+gpu212-10:116461:116461 [0] NCCL INFO Bootstrap : Using ib0:10.109.154.55<0>
+gpu212-10:116461:116461 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+gpu212-10:116461:116461 [0] NCCL INFO cudaDriverVersion 11070
+NCCL version 2.14.3+cuda11.6
+gpu212-10:116462:116462 [1] NCCL INFO cudaDriverVersion 11070
+gpu212-10:116464:116464 [3] NCCL INFO cudaDriverVersion 11070
+gpu212-10:116463:116463 [2] NCCL INFO cudaDriverVersion 11070
+gpu212-10:116462:116462 [1] NCCL INFO Bootstrap : Using ib0:10.109.154.55<0>
+gpu212-10:116464:116464 [3] NCCL INFO Bootstrap : Using ib0:10.109.154.55<0>
+gpu212-10:116462:116462 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+gpu212-10:116464:116464 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+gpu212-10:116463:116463 [2] NCCL INFO Bootstrap : Using ib0:10.109.154.55<0>
+gpu212-10:116463:116463 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+gpu212-10:116464:116505 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [RO]; OOB ib0:10.109.154.55<0>
+gpu212-10:116464:116505 [3] NCCL INFO Using network IB
+gpu212-10:116462:116504 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [RO]; OOB ib0:10.109.154.55<0>
+gpu212-10:116462:116504 [1] NCCL INFO Using network IB
+gpu212-10:116463:116507 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [RO]; OOB ib0:10.109.154.55<0>
+gpu212-10:116463:116507 [2] NCCL INFO Using network IB
+gpu212-10:116461:116503 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_2:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [RO]; OOB ib0:10.109.154.55<0>
+gpu212-10:116461:116503 [0] NCCL INFO Using network IB
+gpu212-10:116461:116503 [0] NCCL INFO Setting affinity for GPU 0 to 03f9
+gpu212-10:116462:116504 [1] NCCL INFO Setting affinity for GPU 1 to 03f9
+gpu212-10:116463:116507 [2] NCCL INFO Setting affinity for GPU 2 to 03f9
+gpu212-10:116461:116503 [0] NCCL INFO Channel 00/04 :    0   1   2   3
+gpu212-10:116462:116504 [1] NCCL INFO Trees [0] 2/-1/-1->1->-1 [1] 0/-1/-1->1->2 [2] 2/-1/-1->1->-1 [3] 0/-1/-1->1->2
+gpu212-10:116461:116503 [0] NCCL INFO Channel 01/04 :    0   3   2   1
+gpu212-10:116464:116505 [3] NCCL INFO Trees [0] -1/-1/-1->3->0 [1] -1/-1/-1->3->0 [2] -1/-1/-1->3->0 [3] -1/-1/-1->3->0
+gpu212-10:116463:116507 [2] NCCL INFO Trees [0] 0/-1/-1->2->1 [1] 1/-1/-1->2->-1 [2] 0/-1/-1->2->1 [3] 1/-1/-1->2->-1
+gpu212-10:116461:116503 [0] NCCL INFO Channel 02/04 :    0   1   2   3
+gpu212-10:116461:116503 [0] NCCL INFO Channel 03/04 :    0   3   2   1
+gpu212-10:116461:116503 [0] NCCL INFO Trees [0] 3/-1/-1->0->2 [1] 3/-1/-1->0->1 [2] 3/-1/-1->0->2 [3] 3/-1/-1->0->1
+gpu212-10:116464:116505 [3] NCCL INFO Channel 00/0 : 3[88000] -> 0[1a000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 00/0 : 2[3d000] -> 3[88000] via P2P/indirect/0[1a000]
+gpu212-10:116461:116503 [0] NCCL INFO Channel 00/0 : 0[1a000] -> 1[1b000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 02/0 : 0[1a000] -> 1[1b000] via P2P/IPC
+gpu212-10:116464:116505 [3] NCCL INFO Channel 02/0 : 3[88000] -> 0[1a000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 02/0 : 2[3d000] -> 3[88000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO Channel 01/0 : 3[88000] -> 2[3d000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO Channel 03/0 : 3[88000] -> 2[3d000] via P2P/indirect/0[1a000]
+gpu212-10:116462:116504 [1] NCCL INFO Channel 00/0 : 1[1b000] -> 2[3d000] via P2P/IPC
+gpu212-10:116462:116504 [1] NCCL INFO Channel 02/0 : 1[1b000] -> 2[3d000] via P2P/IPC
+gpu212-10:116462:116504 [1] NCCL INFO Channel 01/0 : 1[1b000] -> 0[1a000] via P2P/IPC
+gpu212-10:116462:116504 [1] NCCL INFO Channel 03/0 : 1[1b000] -> 0[1a000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 01/0 : 0[1a000] -> 3[88000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 01/0 : 2[3d000] -> 1[1b000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 03/0 : 0[1a000] -> 3[88000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 03/0 : 2[3d000] -> 1[1b000] via P2P/IPC
+gpu212-10:116462:116504 [1] NCCL INFO Connected all rings
+gpu212-10:116463:116507 [2] NCCL INFO Connected all rings
+gpu212-10:116464:116505 [3] NCCL INFO Connected all rings
+gpu212-10:116464:116505 [3] NCCL INFO Channel 01/0 : 3[88000] -> 0[1a000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Connected all rings
+gpu212-10:116462:116504 [1] NCCL INFO Channel 01/0 : 1[1b000] -> 2[3d000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 01/0 : 0[1a000] -> 1[1b000] via P2P/IPC
+gpu212-10:116462:116504 [1] NCCL INFO Channel 03/0 : 1[1b000] -> 2[3d000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 03/0 : 0[1a000] -> 1[1b000] via P2P/IPC
+gpu212-10:116464:116505 [3] NCCL INFO Channel 03/0 : 3[88000] -> 0[1a000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 00/0 : 2[3d000] -> 0[1a000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 02/0 : 2[3d000] -> 0[1a000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 00/0 : 0[1a000] -> 2[3d000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 02/0 : 0[1a000] -> 2[3d000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 00/0 : 2[3d000] -> 1[1b000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 00/0 : 0[1a000] -> 3[88000] via P2P/IPC
+gpu212-10:116463:116507 [2] NCCL INFO Channel 02/0 : 2[3d000] -> 1[1b000] via P2P/IPC
+gpu212-10:116461:116503 [0] NCCL INFO Channel 02/0 : 0[1a000] -> 3[88000] via P2P/IPC
+gpu212-10:116462:116504 [1] NCCL INFO Connected all trees
+gpu212-10:116462:116504 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu212-10:116462:116504 [1] NCCL INFO 4 coll channels, 4 p2p channels, 2 p2p channels per peer
+gpu212-10:116463:116507 [2] NCCL INFO Connected all trees
+gpu212-10:116463:116507 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu212-10:116463:116507 [2] NCCL INFO 4 coll channels, 4 p2p channels, 2 p2p channels per peer
+gpu212-10:116463:116507 [2] NCCL INFO Channel 02/1 : 2[3d000] -> 3[88000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO Connected all trees
+gpu212-10:116464:116505 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu212-10:116464:116505 [3] NCCL INFO 4 coll channels, 4 p2p channels, 2 p2p channels per peer
+gpu212-10:116461:116503 [0] NCCL INFO Connected all trees
+gpu212-10:116461:116503 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gpu212-10:116461:116503 [0] NCCL INFO 4 coll channels, 4 p2p channels, 2 p2p channels per peer
+gpu212-10:116463:116507 [2] NCCL INFO Channel 03/1 : 2[3d000] -> 3[88000] via P2P/indirect/0[1a000]
+gpu212-10:116462:116504 [1] NCCL INFO Channel 01/1 : 1[1b000] -> 3[88000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO Channel 01/1 : 3[88000] -> 1[1b000] via P2P/indirect/0[1a000]
+gpu212-10:116462:116504 [1] NCCL INFO Channel 02/1 : 1[1b000] -> 3[88000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO Channel 02/1 : 3[88000] -> 1[1b000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO Channel 00/1 : 3[88000] -> 2[3d000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO Channel 03/1 : 3[88000] -> 2[3d000] via P2P/indirect/0[1a000]
+gpu212-10:116464:116505 [3] NCCL INFO comm 0x564f7e6b34d0 rank 3 nranks 4 cudaDev 3 busId 88000 - Init COMPLETE
+gpu212-10:116462:116504 [1] NCCL INFO comm 0x55cc3f3f1d40 rank 1 nranks 4 cudaDev 1 busId 1b000 - Init COMPLETE
+gpu212-10:116463:116507 [2] NCCL INFO comm 0x55c28ff0b4d0 rank 2 nranks 4 cudaDev 2 busId 3d000 - Init COMPLETE
+gpu212-10:116461:116503 [0] NCCL INFO comm 0x55cde8a604d0 rank 0 nranks 4 cudaDev 0 busId 1a000 - Init COMPLETE
+/ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/lib/python3.9/site-packages/torch/cuda/memory.py:282: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
+  warnings.warn(
+/ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/lib/python3.9/site-packages/torch/cuda/memory.py:282: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
+  warnings.warn(
+Starting training on GPU 1 of 4 -- 
+Starting training on GPU 3 of 4 -- 
+1: Entering training loop for epoch 0
+3: Entering training loop for epoch 0
+/ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/lib/python3.9/site-packages/torch/cuda/memory.py:282: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
+  warnings.warn(
+Starting training on GPU 0 of 4 -- 
+0: Entering training loop for epoch 0
+/ibex/ai/home/shaima0d/miniconda3/envs/dist-pytorch/lib/python3.9/site-packages/torch/cuda/memory.py:282: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
+  warnings.warn(
+Starting training on GPU 2 of 4 -- 
+2: Entering training loop for epoch 0
+2: Entering validation for epoch 0
+0: Entering validation for epoch 0
+1: Entering validation for epoch 0
+3: Entering validation for epoch 0
+0: Collecting metric for epoch 0
+3: Collecting metric for epoch 0
+1: Collecting metric for epoch 0
+1: Entering training loop for epoch 1
+2: Collecting metric for epoch 0
+0: Writing metric for epoch 0
+[1] :Loss (train, val):0.199, 0.479| Accuracy (train,val): 0.297, 0.000
+3: Entering training loop for epoch 1
+0: Entering training loop for epoch 1
+2: Entering training loop for epoch 1
+3: Entering validation for epoch 1
+1: Entering validation for epoch 1
+2: Entering validation for epoch 1
+0: Entering validation for epoch 1
+0: Collecting metric for epoch 1
+3: Collecting metric for epoch 1
+1: Collecting metric for epoch 1
+1: Entering training loop for epoch 2
+2: Collecting metric for epoch 1
+0: Writing metric for epoch 1
+[2] :Loss (train, val):0.173, 1.238| Accuracy (train,val): 0.000, 0.000
+2: Entering training loop for epoch 2
+3: Entering training loop for epoch 2
+0: Entering training loop for epoch 2
+3: Entering validation for epoch 2
+1: Entering validation for epoch 2
+2: Entering validation for epoch 2
+0: Entering validation for epoch 2
+3: Collecting metric for epoch 2
+1: Collecting metric for epoch 2
+0: Collecting metric for epoch 2
+1: Entering training loop for epoch 3
+2: Collecting metric for epoch 2
+0: Writing metric for epoch 2
+[3] :Loss (train, val):0.170, 1.782| Accuracy (train,val): 0.000, 0.000
+2: Entering training loop for epoch 3
+3: Entering training loop for epoch 3
+0: Entering training loop for epoch 3
+3: Entering validation for epoch 3
+0: Entering validation for epoch 3
+1: Entering validation for epoch 3
+2: Entering validation for epoch 3
+1: Collecting metric for epoch 3
+0: Collecting metric for epoch 3
+3: Collecting metric for epoch 3
+2: Collecting metric for epoch 3
+0: Writing metric for epoch 3
+[4] :Loss (train, val):0.169, 1.204| Accuracy (train,val): 0.028, 0.000
+
+Finished Training
+Total execution time = 429.508 sec
+Max memory used by tensors = 3186503680 bytes
+gpu212-10:116461:116524 [0] NCCL INFO [Service thread] Connection closed by localRank 1
+gpu212-10:116462:116525 [1] NCCL INFO [Service thread] Connection closed by localRank 1
+gpu212-10:116462:116462 [1] NCCL INFO comm 0x55cc3f3f1d40 rank 1 nranks 4 cudaDev 1 busId 1b000 - Abort COMPLETE
+gpu212-10:116461:116524 [0] NCCL INFO [Service thread] Connection closed by localRank 3
+gpu212-10:116464:116523 [3] NCCL INFO [Service thread] Connection closed by localRank 3
+gpu212-10:116461:116524 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+gpu212-10:116464:116464 [3] NCCL INFO comm 0x564f7e6b34d0 rank 3 nranks 4 cudaDev 3 busId 88000 - Abort COMPLETE
+gpu212-10:116463:116526 [2] NCCL INFO [Service thread] Connection closed by localRank 2
+gpu212-10:116461:116461 [0] NCCL INFO comm 0x55cde8a604d0 rank 0 nranks 4 cudaDev 0 busId 1a000 - Abort COMPLETE
+gpu212-10:116463:116463 [2] NCCL INFO comm 0x55c28ff0b4d0 rank 2 nranks 4 cudaDev 2 busId 3d000 - Abort COMPLETE

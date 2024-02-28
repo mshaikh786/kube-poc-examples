@@ -1,0 +1,18 @@
+Loading module for Singularity
+Singularity 3.5 modules now loaded
+[33mWARNING:[0m underlay of /etc/localtime required more than 50 (74) bind mounts
+[33mWARNING:[0m underlay of /usr/bin/nvidia-smi required more than 50 (296) bind mounts
+Starting simpleMultiGPU
+CUDA-capable device count: 2
+Generating input data...
+
+Computing with 2 GPUs...
+  GPU Processing time: 182.000000 (ms)
+
+Computing with Host CPU...
+
+Comparing GPU and Host CPU results...
+  GPU sum: 268442560.000000
+  CPU sum: 268443072.036977
+  Relative difference: 1.907432E-06 
+

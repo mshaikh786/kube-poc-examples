@@ -1,0 +1,32 @@
+# Request a deployment with replicaSet using MIG for each replica
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cuda-test
+  namespace: default
+  labels: 
+    app: cuda-deployment
+spec:
+  replicas: 28
+  selector:
+    matchLabels:
+      app: cuda
+  template:
+    metadata:
+      labels:
+        app: cuda
+    spec:
+      containers:
+        - name: cuda
+          image: docker.io/mshaikh/kubeflow-demo:cuda-samples-11.6.0
+          imagePullPolicy: Always
+          command: [ "deviceQuery"]
+          resources:
+            requests:
+              nvidia.com/mig-1g.10gb: 1
+            limits:
+              nvidia.com/mig-1g.10gb: 1
+                #          env:
+                #            - name: 'NVIDIA_VISIBLE_DEVICES'
+                #              value: 'all'
+
