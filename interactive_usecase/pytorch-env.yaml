@@ -10,6 +10,7 @@ dependencies:
   - python=3.9
   - matplotlib
   - numpy
+  - mkl=2023.2.0
   - pip
   - pip:
        - torch-summary
